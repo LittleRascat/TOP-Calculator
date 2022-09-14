@@ -28,13 +28,13 @@ function divide(num1, num2) {
 
 function operations(num1, operator, num2) {
   if (num2 !== '') {
-    if (operator === 'add') {
+    if (operator === '+') {
       ans = add(num1, num2);
-    } else if (operator === 'subtract') {
+    } else if (operator === '-') {
       ans = subtract(num1, num2);
-    } else if (operator === 'multiply') {
+    } else if (operator === '*') {
       ans = multiply(num1, num2);
-    } else if (operator === 'divide') {
+    } else if (operator === '/') {
       ans = divide(num1, num2);
     } else {
       displayContent.textContent = ans;
@@ -44,10 +44,11 @@ function operations(num1, operator, num2) {
   }
 }
 
-let displayContent = document.querySelector('.display');
+let displayContent = document.querySelector('.number-display');
 
 function displayClear() {
   displayValue = '';
+  operationContent.textContent = '';
   displayContent.textContent = displayValue;
   value1 = '';
   value2 = '';
@@ -68,7 +69,7 @@ deleteOne.onclick = () => {
 }
 
 function display(value) {
-  if (operator === 'equal' && value2 === '') {
+  if (operator === '=') {
     displayValue = '';
     value1 = '';
     value2 = '';
@@ -77,27 +78,26 @@ function display(value) {
   displayContent.textContent = displayValue;
 }
 
-const numberClear = document.querySelector('.number');
+const operationContent = document.querySelector('.operation-display');
 
 function operate(value) {
-  if (value === 'equal' && value2 === '') {
-    displayValue = displayValue;
-  }
   if (value1 === '') {
-    value1 = displayValue * 1;
     operator = value;
+    value1 = displayValue * 1;
+    operationContent.textContent = value1 + ' ' + operator;
     displayValue = '';
   } else {
     value2 = displayValue * 1;
+    operationContent.textContent = value1 + ' ' + operator;
     operations(value1, operator, value2);
-    operator = value;
-    if (value === 'equal') {
+    if (value === '=') {
+      operationContent.textContent = value1 + ' ' + operator + ' ' + value2;
+      operator = value;
       operations(value1, operator, value2);
-      numberClear.onclick = () => {
-        displayClear();
-      }
     } else {
       value1 = ans;
+      operator = value;
+      operationContent.textContent = value1 + ' ' + operator;
       value2 = displayValue * 1;
       displayValue = '';
     }
