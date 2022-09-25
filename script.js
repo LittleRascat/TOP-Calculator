@@ -9,6 +9,8 @@ const operationContent = document.querySelector('.operation-display');
 const displayContent = document.querySelector('.number-display');
 const clear = document.querySelector('.clear');
 const deleteOne = document.querySelector('.delete');
+const negative = document.querySelector('.negative');
+const percent = document.querySelector('.percent');
 
 function add(num1, num2) {
   ans = num1 + num2;
@@ -75,6 +77,16 @@ deleteOne.onclick = () => {
   displayContent.textContent = displayValue;
 }
 
+negative.onclick = () => {
+  displayValue *= -1;
+  displayContent.textContent = displayValue;
+}
+
+percent.onclick = () => {
+  displayValue /= 100;
+  displayContent.textContent = displayValue;
+}
+
 function decimalHandler() {
   if (decimal === 'enabled') {
     displayValue += '.';
@@ -93,12 +105,12 @@ function display(value) {
     displayValue = '' + value;
     displayContent.textContent = displayValue;
   } else {
-  if (value === '.') {
-    decimalHandler();
-  } else {
-    displayValue += value;
-    displayContent.textContent = displayValue;
-  }
+    if (value === '.') {
+      decimalHandler();
+    } else {
+      displayValue += value;
+      displayContent.textContent = displayValue;
+    }
   }
 }
 
@@ -141,37 +153,27 @@ function operate(value) {
 
 document.addEventListener('keydown', (event) => {
   if (event.key === '0') {
-    displayValue += 0;
-    displayContent.textContent = displayValue;
+    display('0');
   } else if (event.key === '1') {
-    displayValue += 1;
-    displayContent.textContent = displayValue;
+    display('1');
   } else if (event.key === '2') {
-    displayValue += 2;
-    displayContent.textContent = displayValue;
+    display('2');
   } else if (event.key === '3') {
-    displayValue += 3;
-    displayContent.textContent = displayValue;
+    display('3');
   } else if (event.key === '4') {
-    displayValue += 4;
-    displayContent.textContent = displayValue;
+    display('4');
   } else if (event.key === '5') {
-    displayValue += 5;
-    displayContent.textContent = displayValue;
+    display('5');
   } else if (event.key === '6') {
-    displayValue += 6;
-    displayContent.textContent = displayValue;
+    display('6');
   } else if (event.key === '7') {
-    displayValue += 7;
-    displayContent.textContent = displayValue;
+    display('7');
   } else if (event.key === '8') {
-    displayValue += 8;
-    displayContent.textContent = displayValue;
+    display('8');
   } else if (event.key === '9') {
-    displayValue += 9;
-    displayContent.textContent = displayValue;
+    display('9');
   } else if (event.key === '.') {
-    decimalHandler();
+    display('.');
   } else if (event.key === '+') {
     operate('+');
   } else if (event.key === '-') {
@@ -182,5 +184,15 @@ document.addEventListener('keydown', (event) => {
     operate('*');
   } else if (event.key === '=') {
     operate('=');
+  } else if (event.key === 'Enter') {
+    operate('=');
+  } else if (event.key === 'Escape') {
+    displayClear();
+  } else if (event.key === 'Backspace') {
+    displayValue = displayValue.slice(0, displayValue.length - 1);
+    displayContent.textContent = displayValue;
+  } else if (event.key === '%') {
+    displayValue /= 100;
+    displayContent.textContent = displayValue;
   }
 });
