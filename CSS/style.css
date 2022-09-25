@@ -1,17 +1,57 @@
 body {
-    font-size: 40px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(230, 186, 129);
+}
+
+.calculator-container {
+    border: 5px solid black;
+    background: black;
 }
 
 button {
     font-size: 40px;
+    height: 100px;
+    width: 100px;
+    font-size: 40px;
+    margin: 2px;
+    border: none;
 }
 
 .operation-display {
     height: 24px;
+    width: 406px;
     font-size: 24px;
+    text-align: right;
+    background: lightgray;
+    padding: 5px;
 }
 
 .number-display {
-    height: 40px;
-    font-size: 40px;
+    height: 60px;
+    width: 406px;
+    font-size: 60px;
+    text-align: right;
+    background: lightgray;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.row {
+    display: flex;
+}
+
+.clear, .delete, .negative, .percent {
+    background: rgb(253, 100, 100);
+}
+
+.number {
+    background: rgb(133, 47, 133);
+}
+
+.operator {
+    background: rgb(82, 82, 250);
 }
