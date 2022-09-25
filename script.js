@@ -3,6 +3,7 @@ let displayValue = '';
 let value1 = '';
 let value2 = '';
 let operator;
+let decimal = 'enabled';
 
 function add(num1, num2) {
   ans = num1 + num2;
@@ -24,8 +25,6 @@ function divide(num1, num2) {
   return ans;
 }
 
-
-
 function operations(num1, operator, num2) {
   if (num2 !== '') {
     if (operator === '+') {
@@ -35,9 +34,13 @@ function operations(num1, operator, num2) {
     } else if (operator === '*') {
       ans = multiply(num1, num2);
     } else if (operator === '/') {
-      ans = divide(num1, num2);
+      if (num2 !== 0) {
+        ans = divide(num1, num2);
+      } else {
+        ans = 'What are you doing?'
+      }      
     } else {
-      displayContent.textContent = ans;
+      displayContent.textContent = ans.toFixed(7)*1;
     }
   } else {
     ans = num1;
@@ -46,13 +49,18 @@ function operations(num1, operator, num2) {
 
 let displayContent = document.querySelector('.number-display');
 
+function resetValues() {
+  value1 = '';
+  value2 = '';
+  ans = '';
+  decimal = 'enabled';
+}
+
 function displayClear() {
   displayValue = '';
   operationContent.textContent = '';
   displayContent.textContent = displayValue;
-  value1 = '';
-  value2 = '';
-  ans = '';
+  resetValues();
 }
 
 const clear = document.querySelector('.clear');
@@ -70,36 +78,62 @@ deleteOne.onclick = () => {
 
 function display(value) {
   if (operator === '=') {
-    displayValue = '';
-    value1 = '';
-    value2 = '';
+    resetValues();
+    operator = '';
+    displayValue = '' + value;
+    displayContent.textContent = displayValue;
+  } else {
+  if (value === '.') {
+    if (decimal === 'enabled') {
+      displayValue += value;
+      displayContent.textContent = displayValue;
+      decimal = 'disabled';
+    } else {
+      displayValue = displayValue;
+      displayContent.textContent = displayValue;
+    }
+  } else {
+    displayValue += value;
+    displayContent.textContent = displayValue;
   }
-  displayValue += value;
-  displayContent.textContent = displayValue;
+  }
 }
 
 const operationContent = document.querySelector('.operation-display');
 
 function operate(value) {
+  decimal = 'enabled';
   if (value1 === '') {
     operator = value;
-    value1 = displayValue * 1;
-    operationContent.textContent = value1 + ' ' + operator;
-    displayValue = '';
+    if (operator !== '=') {
+      value1 = displayValue * 1;
+      operationContent.textContent = value1.toFixed(3)*1 + ' ' + operator;
+      displayValue = '';
+    } else {
+      displayValue = displayValue;
+    }
   } else {
     value2 = displayValue * 1;
-    operationContent.textContent = value1 + ' ' + operator;
+    operationContent.textContent = value1.toFixed(3)*1 + ' ' + operator;
     operations(value1, operator, value2);
     if (value === '=') {
-      operationContent.textContent = value1 + ' ' + operator + ' ' + value2;
+      operationContent.textContent = value1.toFixed(3)*1 + ' ' + operator + ' ' + value2.toFixed(3)*1;
       operator = value;
       operations(value1, operator, value2);
-    } else {
-      value1 = ans;
-      operator = value;
-      operationContent.textContent = value1 + ' ' + operator;
-      value2 = displayValue * 1;
       displayValue = '';
+    } else {
+      if (ans === 'What are you doing?') {
+        displayContent.textContent = ans;
+        displayValue = '';
+        operationContent.textContent = value1.toFixed(3)*1 + ' ' + operator + ' ' + value2.toFixed(3)*1;
+        resetValues();
+      } else {
+        value1 = ans;
+        operator = value;
+        operationContent.textContent = value1.toFixed(3)*1 + ' ' + operator;
+        value2 = displayValue * 1;
+        displayValue = '';
+      }
     }
   }
 }
