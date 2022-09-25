@@ -1,0 +1,17 @@
+body {
+    font-size: 40px;
+}
+
+button {
+    font-size: 40px;
+}
+
+.operation-display {
+    height: 24px;
+    font-size: 24px;
+}
+
+.number-display {
+    height: 40px;
+    font-size: 40px;
+}

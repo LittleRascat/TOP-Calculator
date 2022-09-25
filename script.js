@@ -5,6 +5,11 @@ let value2 = '';
 let operator;
 let decimal = 'enabled';
 
+const operationContent = document.querySelector('.operation-display');
+const displayContent = document.querySelector('.number-display');
+const clear = document.querySelector('.clear');
+const deleteOne = document.querySelector('.delete');
+
 function add(num1, num2) {
   ans = num1 + num2;
   return ans;
@@ -47,8 +52,6 @@ function operations(num1, operator, num2) {
   }
 }
 
-let displayContent = document.querySelector('.number-display');
-
 function resetValues() {
   value1 = '';
   value2 = '';
@@ -63,17 +66,24 @@ function displayClear() {
   resetValues();
 }
 
-const clear = document.querySelector('.clear');
-
 clear.onclick = () => {
   displayClear();
 }
 
-const deleteOne = document.querySelector('.delete');
-
 deleteOne.onclick = () => {
   displayValue = displayValue.slice(0, displayValue.length - 1);
   displayContent.textContent = displayValue;
+}
+
+function decimalHandler() {
+  if (decimal === 'enabled') {
+    displayValue += '.';
+    displayContent.textContent = displayValue;
+    decimal = 'disabled';
+  } else {
+    displayValue = displayValue;
+    displayContent.textContent = displayValue;
+  }
 }
 
 function display(value) {
@@ -84,22 +94,13 @@ function display(value) {
     displayContent.textContent = displayValue;
   } else {
   if (value === '.') {
-    if (decimal === 'enabled') {
-      displayValue += value;
-      displayContent.textContent = displayValue;
-      decimal = 'disabled';
-    } else {
-      displayValue = displayValue;
-      displayContent.textContent = displayValue;
-    }
+    decimalHandler();
   } else {
     displayValue += value;
     displayContent.textContent = displayValue;
   }
   }
 }
-
-const operationContent = document.querySelector('.operation-display');
 
 function operate(value) {
   decimal = 'enabled';
@@ -138,3 +139,48 @@ function operate(value) {
   }
 }
 
+document.addEventListener('keydown', (event) => {
+  if (event.key === '0') {
+    displayValue += 0;
+    displayContent.textContent = displayValue;
+  } else if (event.key === '1') {
+    displayValue += 1;
+    displayContent.textContent = displayValue;
+  } else if (event.key === '2') {
+    displayValue += 2;
+    displayContent.textContent = displayValue;
+  } else if (event.key === '3') {
+    displayValue += 3;
+    displayContent.textContent = displayValue;
+  } else if (event.key === '4') {
+    displayValue += 4;
+    displayContent.textContent = displayValue;
+  } else if (event.key === '5') {
+    displayValue += 5;
+    displayContent.textContent = displayValue;
+  } else if (event.key === '6') {
+    displayValue += 6;
+    displayContent.textContent = displayValue;
+  } else if (event.key === '7') {
+    displayValue += 7;
+    displayContent.textContent = displayValue;
+  } else if (event.key === '8') {
+    displayValue += 8;
+    displayContent.textContent = displayValue;
+  } else if (event.key === '9') {
+    displayValue += 9;
+    displayContent.textContent = displayValue;
+  } else if (event.key === '.') {
+    decimalHandler();
+  } else if (event.key === '+') {
+    operate('+');
+  } else if (event.key === '-') {
+    operate('-');
+  } else if (event.key === '/') {
+    operate('/');
+  } else if (event.key === '*') {
+    operate('*');
+  } else if (event.key === '=') {
+    operate('=');
+  }
+});
