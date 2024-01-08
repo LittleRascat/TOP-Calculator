@@ -7,6 +7,19 @@ body {
     background: rgb(230, 186, 129);
 }
 
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+sup {
+    top: -0.5em;
+}
+sub {
+    bottom: -0.25em;
+}
+
 .calculator-container {
     border: 5px solid black;
     background: black;
@@ -14,16 +27,31 @@ body {
 
 button {
     font-size: 40px;
-    height: 100px;
-    width: 100px;
+    height: 140px;
+    width: 140px;
     font-size: 40px;
     margin: 2px;
     border: none;
 }
 
+input[type='radio'] {
+    margin: 20px;
+    margin-left: 50px;
+    transform: scale(2);
+}
+
+.selectors {
+    background-color: rgb(160, 226, 121);
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    height: 70px;
+}
+
 .operation-display {
     height: 24px;
-    width: 406px;
+    width: 1140px;
     font-size: 24px;
     text-align: right;
     background: lightgray;
@@ -32,7 +60,7 @@ button {
 
 .number-display {
     height: 60px;
-    width: 406px;
+    width: 1140px;
     font-size: 60px;
     text-align: right;
     background: lightgray;
@@ -54,4 +82,8 @@ button {
 
 .operator {
     background: rgb(82, 82, 250);
+}
+
+.sci {
+    background: rgb(247, 250, 82);
 }

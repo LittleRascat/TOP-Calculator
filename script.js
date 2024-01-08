@@ -11,6 +11,10 @@ const clear = document.querySelector('.clear');
 const deleteOne = document.querySelector('.delete');
 const negative = document.querySelector('.negative');
 const percent = document.querySelector('.percent');
+const sqrt = document.querySelector('.sqrt');
+const sin = document.querySelector('.sin');
+const cos = document.querySelector('.cos');
+const tan = document.querySelector('.tan');
 
 function add(num1, num2) {
   ans = num1 + num2;
@@ -32,6 +36,11 @@ function divide(num1, num2) {
   return ans;
 }
 
+function exponent(num1, num2) {
+  ans = num1 ** num2;
+  return ans;
+}
+
 function operations(num1, operator, num2) {
   if (num2 !== '') {
     if (operator === '+') {
@@ -45,13 +54,23 @@ function operations(num1, operator, num2) {
         ans = divide(num1, num2);
       } else {
         ans = 'What are you doing?'
-      }      
+      }
+    } else if (operator === '^') {
+      ans = exponent(num1, num2);
     } else {
       displayContent.textContent = ans.toFixed(7)*1;
     }
   } else {
     ans = num1;
   }
+}
+
+function toDegrees(angle) {
+  return angle * (180/Math.PI);
+}
+
+function toRadians(angle) {
+  return angle * (Math.PI/180);
 }
 
 function resetValues() {
@@ -84,6 +103,38 @@ negative.onclick = () => {
 
 percent.onclick = () => {
   displayValue /= 100;
+  displayContent.textContent = displayValue;
+}
+
+sqrt.onclick = () => {
+  displayValue = Math.sqrt(displayValue);
+  displayContent.textContent = displayValue;
+}
+
+sin.onclick = () => {
+  if (document.getElementById('degrees').checked) {
+    displayValue = Math.sin(toRadians(displayValue));
+  } else {
+    displayValue = Math.sin(displayValue);
+  }
+  displayContent.textContent = displayValue;
+}
+
+cos.onclick = () => {
+  if (document.getElementById('degrees').checked) {
+    displayValue = Math.cos(toRadians(displayValue));
+  } else {
+    displayValue = Math.cos(displayValue);
+  }
+  displayContent.textContent = displayValue;
+}
+
+tan.onclick = () => {
+  if (document.getElementById('degrees').checked) {
+    displayValue = Math.tan(toRadians(displayValue));
+  } else {
+    displayValue = Math.tan(displayValue);
+  }
   displayContent.textContent = displayValue;
 }
 
@@ -182,6 +233,8 @@ document.addEventListener('keydown', (event) => {
     operate('/');
   } else if (event.key === '*') {
     operate('*');
+  } else if (event.key === '^') {
+    operate('^');
   } else if (event.key === '=') {
     operate('=');
   } else if (event.key === 'Enter') {

@@ -13,35 +13,43 @@
     <div class="operation-display"></div>
     <div class="number-display"></div>
     <div class="grid-rows">
-      <div class="row">
-        <button class="clear">A/C</button>
-        <button class="delete">&larr;</button>
-        <button class="negative">+/-</button>
-        <button class="percent">%</button>
+      <div class="selectors">
+        <input class="radio" id="radians" type="radio" name="angle-type" value="radians">Radians<br>
+        <input class="radio" id="degrees" type="radio" name="angle-type" value="degrees" checked>Degrees<br>
       </div>
       <div class="row">
         <button class="number" value="7" onclick="display(this.value)">7</button>
         <button class="number" value="8" onclick="display(this.value)">8</button>
         <button class="number" value="9" onclick="display(this.value)">9</button>
         <button class="operator" value="/" onclick="operate(this.value)">/</button>
+        <button class="clear">A/C</button>
+        <button class="sqrt sci">&Sqrt;</button>
+        <button class="sci operator" value="^" onclick="operate(this.value)">x<sup>y</sup></button>
+        <button class="sci number" onclick="display(Math.PI)">&pi;</button>
       </div>
       <div class="row">
         <button class="number" value="4" onclick="display(this.value)">4</button>
         <button class="number" value="5" onclick="display(this.value)">5</button>
         <button class="number" value="6" onclick="display(this.value)">6</button>
         <button class="operator" value="*" onclick="operate(this.value)">*</button>
+        <button class="delete">&larr;</button>
+        <button class="sin sci">sin(x)</button>
+        <button class="cos sci">cos(x)</button>
+        <button class="tan sci">tan(x)</button>
       </div>
       <div class="row">
         <button class="number" value="1" onclick="display(this.value)">1</button>
         <button class="number" value="2" onclick="display(this.value)">2</button>
         <button class="number" value="3" onclick="display(this.value)">3</button>
         <button class="operator" value="-" onclick="operate(this.value)">-</button>
+        <button class="negative">+/-</button>
       </div>
       <div class="row">
         <button class="number" value="." onclick="display(this.value)">.</button>
         <button class="number" value="0" onclick="display(this.value)">0</button>
         <button class="operator" value="=" onclick="operate(this.value)">=</button>
         <button class="operator" value="+" onclick="operate(this.value)">+</button>
+        <button class="percent">%</button>
       </div>
     </div>
   </div>
