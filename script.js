@@ -15,6 +15,11 @@ const sqrt = document.querySelector('.sqrt');
 const sin = document.querySelector('.sin');
 const cos = document.querySelector('.cos');
 const tan = document.querySelector('.tan');
+const asin = document.querySelector('.asin');
+const acos = document.querySelector('.acos');
+const atan = document.querySelector('.atan');
+const sq = document.querySelector('.sq');
+const fac = document.querySelector('.fac');
 
 function add(num1, num2) {
   ans = num1 + num2;
@@ -41,6 +46,11 @@ function exponent(num1, num2) {
   return ans;
 }
 
+function root(num1, num2) {
+  ans = num1 ** (1/num2);
+  return ans;
+}
+
 function operations(num1, operator, num2) {
   if (num2 !== '') {
     if (operator === '+') {
@@ -57,6 +67,8 @@ function operations(num1, operator, num2) {
       }
     } else if (operator === '^') {
       ans = exponent(num1, num2);
+    } else if (operator === 'R') {
+      ans = root(num1, num2);
     } else {
       displayContent.textContent = ans.toFixed(7)*1;
     }
@@ -87,6 +99,13 @@ function displayClear() {
   resetValues();
 }
 
+function factorial(num1) {
+  for (let i=num1-1; i>0; i--) {
+    num1 *= i;
+  }
+  return num1;
+}
+
 clear.onclick = () => {
   displayClear();
 }
@@ -108,6 +127,11 @@ percent.onclick = () => {
 
 sqrt.onclick = () => {
   displayValue = Math.sqrt(displayValue);
+  displayContent.textContent = displayValue;
+}
+
+sq.onclick = () => {
+  displayValue = displayValue ** 2;
   displayContent.textContent = displayValue;
 }
 
@@ -135,6 +159,38 @@ tan.onclick = () => {
   } else {
     displayValue = Math.tan(displayValue);
   }
+  displayContent.textContent = displayValue;
+}
+
+asin.onclick = () => {
+  if (document.getElementById('degrees').checked) {
+    displayValue = toDegrees(Math.asin(displayValue));
+  } else {
+    displayValue = Math.asin(displayValue);
+  }
+  displayContent.textContent = displayValue;
+}
+
+acos.onclick = () => {
+  if (document.getElementById('degrees').checked) {
+    displayValue = toDegrees(Math.acos(displayValue));
+  } else {
+    displayValue = Math.acos(displayValue);
+  }
+  displayContent.textContent = displayValue;
+}
+
+atan.onclick = () => {
+  if (document.getElementById('degrees').checked) {
+    displayValue = toDegrees(Math.atan(displayValue));
+  } else {
+    displayValue = Math.atan(displayValue);
+  }
+  displayContent.textContent = displayValue;
+}
+
+fac.onclick = () => {
+  displayValue = factorial(displayValue);
   displayContent.textContent = displayValue;
 }
 
