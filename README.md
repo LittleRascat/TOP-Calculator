@@ -1,2 +1,2 @@
 # TOP-Calculator
-This webpage was created for The Odin Project's Calculator project. Webpage can be viewed at https://littlerascat.github.io/TOP-Calculator/.
+This webpage was created for The Odin Project's Calculator project. It has been expanded to include scientific functions. Webpage can be viewed at https://littlerascat.github.io/TOP-Calculator/. It has been further expanded to include scientific functions.
