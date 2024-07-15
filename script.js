@@ -4,6 +4,7 @@ let value1 = '';
 let value2 = '';
 let operator;
 let decimal = 'enabled';
+let memory = '';
 
 const operationContent = document.querySelector('.operation-display');
 const displayContent = document.querySelector('.number-display');
@@ -11,6 +12,9 @@ const clear = document.querySelector('.clear');
 const deleteOne = document.querySelector('.delete');
 const negative = document.querySelector('.negative');
 const percent = document.querySelector('.percent');
+const memoryAdd = document.querySelector('.memoryAdd');
+const memoryRecall = document.querySelector('.memoryRecall');
+const memoryClear = document.querySelector('.memoryClear');
 const sqrt = document.querySelector('.sqrt');
 const sin = document.querySelector('.sin');
 const cos = document.querySelector('.cos');
@@ -123,6 +127,19 @@ negative.onclick = () => {
 percent.onclick = () => {
   displayValue /= 100;
   displayContent.textContent = displayValue;
+}
+
+memoryAdd.onclick = () => {
+  memory = displayValue;
+}
+
+memoryRecall.onclick = () => {
+  displayValue = memory;
+  displayContent.textContent = displayValue;
+}
+
+memoryClear.onclick = () => {
+  memory = '';
 }
 
 sqrt.onclick = () => {
